@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+<<<<<<< HEAD
+    <title>GRadio</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+
+    <div class="main">
+
+        <audio id="player" controls="false" autoplay="false" name="media"><source src="http://stream.westcoast.gm:8002/;" type="audio/mpeg"></audio>
+
+
+        <div class="hideAudio">
+
+            <div class="top">
+                <div class="circle box0">
+                    <h3 id="stationName"> West Coast 1</h3>
+                    <h1> 93.4</h1>
+                </div>
+
+            </div>
+            <div class="bottom">
+                <div class="left box1">
+                    <button class="control" id="play" onclick="playMusic()"><i class="fa fa-play"  ></i></button>
+                    <button class="control" id="stop" onclick="stopMusic()"><i class="fa fa-stop"></i></button>
+                </div>
+                <div class="right box1">
+                    <button class="control box2" onclick="document.getElementById('player').volume += 0.1"><i class="fa fa-volume-up"></i></button>
+                    <button class="control" onclick="document.getElementById('player').volume -= 0.1"><i class="fa fa-volume-down"></i></button>
+                </div>
+                <div class="footer">
+                    <button class="control box1" onclick="document.getElementById('player').play()"><i class="fa fa-random"></i></button>
+                </div>
+
+                <button class="control box0" id="menu" onclick="showMenu()"><i class="fa fa-ellipsis-h" id="graz"></i></button>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <span style="font-size:22px;cursor:pointer;position: absolute; left: 10px; top: 10px; z-index: 1; color: white" onclick="openNav()"><i class="fa fa-ellipsis-h"></i></span>
+
+    <span style="font-size:22px;cursor:pointer; position: absolute; right: 10px; top: 10px; z-index: 1; color: white" onclick="openNav()"><i class="fa fa-search"></i></span>
+
+    <div class="stationContainer" id="stationContainer">
+        <div class="row center box2">
+            <h4> Radio Stations</h4>
+            <img src="images/icon.png" class="appicon2" />
+            <hr/>
+        </div>
+        <div class="row">
+            <button class="station box3 " onclick="westy()">
+            <div>
+                <i class="fa fa-headphones" id="col"></i>
+            <h5>West Coast 1</h5>
+            </div>
+            </button>
+            <button class="station box2" onclick="capital()">
+                 
+             <i class="fa fa-headphones" id="col"></i><h5>Capital</h5>
+                
+                     </button>
+        </div>
+        <div class="row">
+            <button class="station box2 " onclick="afri()">
+            <div>
+                <i class="fa fa-headphones" id="col"></i>
+            <h5>AFRI</h5>
+            </div>
+            </button>
+            <button class="station box2" onclick="capital()">
+             <i class="fa fa-headphones" id="col"></i>
+                <h5>Unique</h5></button>
+        </div>
+        <div class="row">
+            <button class="station box2" onclick="westy()">
+            <div>
+                <i class="fa fa-headphones" id="col"></i>
+            <h5>Vibes</h5>
+            </div>
+            </button>
+            <button class="station box2" onclick="capital()">
+             <i class="fa fa-headphones" id="col"></i>
+                <h5>GRTS</h5>
+            </button>
+        </div>
+        <div class="row">
+            <button class="station box2" onclick="paradise()">
+            <div>
+                <i class="fa fa-headphones" id="col"></i>
+            <h5>Paradise</h5>
+            </div>
+            </button>
+            <button class="station box2" onclick="capital()">
+             <i class="fa fa-headphones" id="col"></i>
+                <h5>Capital</h5></button>
+        </div>
+        <button class="control box0" id="menu" onclick="hideMenu()"><i class="fa fa-ellipsis-h" id="graz"></i></button>
+    </div>
+
+    <div class="splashScreen" id="splash">
+        <img src="images/icon.png" class="appicon" />
+        <h3> RAJO</h3>
+        <h6>Listen to all your favorite Gambia Radio Stations</h6>
+
+        <button type="button" id="getStart" onclick="hideSplash()">Get Start</button>
+    </div>
+
+    <script>
+        var isplaying = true;
+        document.getElementById('play').style.backgroundColor = "black";
+        var video = document.getElementById('player');
+        //video.pause();
+        // west coast // http://stream.westcoast.gm:8002/;
+        var stations = {
+            westCost1: "http://stream.westcoast.gm:8002/;",
+            capatial: "http://s3.viastreaming.net:8815/;?type=.mp3/;stream.mp3",
+            afri: "http://usa9-vn.webcast-server.net:8120/;?type=.mp3/;stream.mp3",
+            paradise: "http://amber.streamguys.com:4340/paradise105"
+
+
+        }
+
+        function hideSplash() {
+            document.getElementById('splash').style.opacity = "0";
+            document.getElementById('splash').style.bottom = "-700px";
+        }
+
+        function playMusic() {
+            document.getElementById('player').pause()
+            document.getElementById('play').style.backgroundColor = "black";
+            document.getElementById('stop').style.backgroundColor = "white";
+        }
+
+        function stopMusic() {
+            document.getElementById('player').pause()
+            document.getElementById('play').style.backgroundColor = "white";
+            document.getElementById('stop').style.backgroundColor = "black";
+
+        }
+
+        function showMenu() {
+            var slider = document.getElementById("stationContainer")
+            slider.classList.add('slideUp');
+            slider.classList.remove('slideDown');
+
+        }
+
+        function hideMenu() {
+            var slider = document.getElementById("stationContainer")
+            slider.classList.add('slideDown');
+            slider.classList.remove('slideUp');
+        }
+
+
+
+        function westy() {
+            document.getElementById("stationName").textContent = "West Coast";
+            video.setAttribute('src', stations.westCost1)
+            video.load();
+            video.play();
+            hideMenu();
+
+        }
+
+        function capital() {
+            document.getElementById("stationName").textContent = "Capital";
+            video.setAttribute('src', stations.capatial)
+            video.load();
+            video.play();
+            hideMenu();
+        }
+
+        function afri() {
+            document.getElementById("stationName").textContent = "AFRI";
+            video.setAttribute('src', stations.afri)
+            video.load();
+            video.play();
+            hideMenu();
+        }
+
+        function paradise() {
+            document.getElementById("stationName").textContent = "Paradise";
+            video.setAttribute('src', stations.paradise)
+            video.load();
+            video.play();
+            hideMenu();
+        }
+
+        function changeSource(url) {
+            var video = document.getElementById('player');
+            video.src = url;
+            video.play();
+        }
+
+        function changeStation(stationName) {
+
+            document.getElementById(stationName.toString()).textContent = stationName;
+        }
+
+    </script>
+
+</body>
+
+<script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+
+</script>
+
+=======
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+  </body>
+>>>>>>> 6d791aec918d8834e366cf19bbf47c57992f40fe
+</html>
